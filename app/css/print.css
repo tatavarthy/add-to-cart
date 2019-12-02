@@ -18,7 +18,8 @@
 .green-bckg {
   background: #5cb85c;
   padding: 7px;
-  border-radius: 5px; }
+  border-radius: 5px;
+  color: white; }
 
 .margin-bottom {
   margin-bottom: 20px; }

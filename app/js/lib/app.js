@@ -2,11 +2,9 @@
 
 var app = angular.module('myApp', []);
 app.controller('myCtrl', function($scope,$http) {
-  
-
 	$scope.tiles=[];
 	$scope.cart = [];
-	$scope.cost = 0;
+	
 
     $http.get("https://api.myjson.com/bins/qhnfp")
 	  .then(function(response) {
@@ -14,19 +12,19 @@ app.controller('myCtrl', function($scope,$http) {
 	  });
 
 	$scope.calculateCost =function(){
+		$scope.cost = 0;
 		for(var i=0;i<$scope.cart.length;i++)
 	  	{
-	  		$scope.cost = $scope.cost + $scope.cart[i].quantity *  $scope.cart[i].price;
+	  		$scope.cost = $scope.cost + ($scope.cart[i].quantity *  $scope.cart[i].price);
 	  	}
-
 	}
 
 	$scope.goToCart = function(){
 		   window.location = '/order-summary.html';
 	}
 		
-
   	$scope.addToCart = function(event){
+
   		$scope.showMsg = true;
 	  	for(var i=0;i<$scope.tiles.length;i++)
 	  	{
@@ -55,8 +53,8 @@ app.controller('myCtrl', function($scope,$http) {
 	$scope.decrement = function(event){
 	  	for (var j=0; j<$scope.cart.length; j++) {
 	  		if ($scope.cart[j].id == event.target.id) {
-	  			$scope.cart[j].quantity -= 1;
-	  			$scope.cost = $scope.cost + $scope.cart[j].quantity *  $scope.cart[j].price;
+	  			$scope.quantity = $scope.cart[j].quantity > 0 ? $scope.cart[j].quantity-= 1:0;
+	  			
 	  		}
 	  	}
 	  	$scope.calculateCost();
@@ -73,5 +71,5 @@ app.directive('onError', function() {
       })
     }
   }
-})
+});
 

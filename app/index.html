@@ -22,20 +22,14 @@
   <!-- endbuild -->
 
   <div ng-app="myApp" ng-controller="myCtrl">
-
-      
       <div class="clearfix"></div>
       <div class="container" >
           <div class="col-md-8 col-md-offset-2 margin-top margin-bottom">
           <p class="text-left col-md-3">All Items </p>
           <div class="text-center center-block green-bckg col-md-5" ng-show="showMsg">{{cartItem.name}} is added to the cart</div>
-          <!-- <a class="col-md-2 pull-right notification" href="#order-summary" ng-click="showSummary = true">Go to Cart
-            <span class="badge">{{}}</span>
-          </a> -->
-
           <a href="#" class="col-md-2 pull-right notification" ng-click="showSummary = true">
             <span>Go to Cart</span>
-            <span class="badge">{{cart.length}}</span>
+            <span class="badge" ng-show="cart.length>0">{{cart.length}}</span>
           </a>
       </div>
         <div class="clearfix"></div>
@@ -67,7 +61,6 @@
                 </thead>
                 <tbody>
                   <tr ng-repeat="item in cart">
-
                     <td>{{item.name}}</td>
                     <td>
                       <div ng-init="total=0">
@@ -82,11 +75,6 @@
                       <div>
                     </td>
                     <td> $ {{item.price * item.quantity}}</td>
-                    <!-- <input type="text" id="totalCost" ng-model="cost" value="{{item.price * count}} + {{cost}}"/> -->
-                  </tr>
-                  <tr>
-                    <td colspan="2">Total Cost</td>
-                    <td><strong>{{cost}}</strong></td>
                   </tr>
                 </tbody>
               </table>
@@ -114,9 +102,6 @@
             </table>
           </div>
         </div>
-       
-        
-        
       </div>
       </div>
 </body>
